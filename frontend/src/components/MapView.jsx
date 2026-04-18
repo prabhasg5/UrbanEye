@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './MapView.css';
+import { addTrafficLayer } from './TrafficLayer.js';
 
 const VIJAYAWADA_CENTER = [80.6480, 16.5062];
 const LOCK_RADIUS_METERS = 17000;
@@ -92,7 +93,7 @@ function MapView() {
       zoom: 12,
       maxBounds: MAX_BOUNDS,
       minZoom: 10,
-      maxZoom: 15,
+      maxZoom: 18,
       attributionControl: false
     });
 
@@ -129,6 +130,8 @@ function MapView() {
           'text-anchor': 'center'
         }
       });
+
+      addTrafficLayer(map.current);
     });
   }, []);
 
