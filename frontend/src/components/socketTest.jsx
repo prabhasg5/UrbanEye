@@ -6,7 +6,7 @@ export default function SocketDebugger() {
   const [logs, setLogs] = useState([]);
 
   useEffect(() => {
-    const socket = io("http://localhost:5000");
+    const socket = io("http://13.53.182.223");
 
     // ✅ connection
     socket.on("connect", () => {

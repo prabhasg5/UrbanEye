@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MapView from "./components/MapView";
 import SocketTest from "./components/socketTest";
-
+import Register from "./components/register";
+import './App.css';
 function App() {
   return (
     <>
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         {/* 🔥 Map page */}
         <Route path="/map" element={<MapView />} />
+        <Route path="/register" element={<Register />} />
 
         {/* 🔧 Optional debug page */}
         {/* <Route path="/socket" element={<SocketTest />} /> */}

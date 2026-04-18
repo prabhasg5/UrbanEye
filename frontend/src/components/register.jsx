@@ -48,7 +48,7 @@ export default function Register() {
     };
 
     try {
-      const res = await fetch("http://localhost:5000/api/events/register", {
+      const res = await fetch("http://13.53.182.223/api/events/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
