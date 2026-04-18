@@ -34,7 +34,7 @@ export default function LandingPage() {
     let bearing = LANDING_VIEW.bearing;
     const rotate = () => {
       if (!map.current) return;
-      bearing += 0.015;                     // very slow drift
+      bearing += 0.015;
       map.current.setBearing(bearing);
       rotationFrame.current = requestAnimationFrame(rotate);
     };
@@ -76,25 +76,10 @@ export default function LandingPage() {
       });
       map.current.setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
 
-      /* Fog for atmospheric haze near the horizon */
-      map.current.setFog({
-        color: 'rgb(220, 230, 240)',
-        'high-color': 'rgb(60, 120, 220)',
-        'horizon-blend': 0.12,
-        'space-color': 'rgb(150, 180, 220)',
-        'star-intensity': 0.0,
-      });
-
-      /* Sky layer — gradient atmosphere visible at the top */
-      map.current.addLayer({
-        id: 'sky',
-        type: 'sky',
-        paint: {
-          'sky-type': 'atmosphere',
-          'sky-atmosphere-sun': [0.0, 0.0],
-          'sky-atmosphere-sun-intensity': 15,
-        },
-      });
+      /* ── FOG & SKY REMOVED ──────────────────
+         These were causing the white/blue wash
+         over the top portion of the map.
+      ────────────────────────────────────────── */
 
       /* Start slow rotation after map loads */
       startRotation();
@@ -113,12 +98,10 @@ export default function LandingPage() {
   const handleGoToCity = () => {
     if (!map.current || fading) return;
 
-    stopRotation();                          // stop auto-rotate
-    setFading(true);                         // trigger overlay fade-out
+    stopRotation();
+    setFading(true);
 
-    /* Remove terrain/sky so city view is flat like the original MapView */
     map.current.setTerrain(null);
-    map.current.setFog(null);
     if (map.current.getLayer('sky')) map.current.removeLayer('sky');
 
     map.current.flyTo({
@@ -149,7 +132,7 @@ export default function LandingPage() {
       {/* Map background */}
       <div ref={mapContainer} className="landing-map" />
 
-      {/* Bottom vignette for depth */}
+      {/* Bottom vignette — hidden via CSS */}
       <div className="landing-vignette" />
 
       {/* Hero overlay */}
