@@ -46,7 +46,7 @@ jobs:
             # Run new container
             docker run -d \
               --name urbaneye-backend \
-              -p 5001:5000 \
+              -p 80:5000 \
               --env-file /home/ec2-user/.env \
               --restart always \
               ${{ secrets.DOCKER_USERNAME }}/urbaneye-backend:latest
