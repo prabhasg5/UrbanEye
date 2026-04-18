@@ -4,18 +4,21 @@ import SocketTest from "./components/socketTest";
 
 function App() {
   return (
+    <>
+    <SocketTest/>
     <Router>
       <Routes>
         {/* 🔥 Map page */}
         <Route path="/map" element={<MapView />} />
 
         {/* 🔧 Optional debug page */}
-        <Route path="/socket" element={<SocketTest />} />
+        {/* <Route path="/socket" element={<SocketTest />} /> */}
 
         {/* 🏠 Default route */}
         <Route path="/" element={<div>Home Page</div>} />
       </Routes>
     </Router>
+    </>
   );
 }
 
