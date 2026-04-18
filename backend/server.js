@@ -3,7 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const http = require("http");
-
+const cors = require("cors");
 const eventRoutes = require("./routes/eventRoutes");
 const initSocket = require("./socket");
 
@@ -12,6 +12,12 @@ const server = http.createServer(app);
 
 // 🔥 initialize socket
 const io = initSocket(server);
+app.use(cors({
+  origin: "*", // ⚠️ for development only
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 
 app.use(express.json());
 
