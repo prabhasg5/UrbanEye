@@ -93,7 +93,7 @@ function MapView() {
       zoom: 12,
       maxBounds: MAX_BOUNDS,
       minZoom: 10,
-      maxZoom: 15,
+      maxZoom: 18,
       attributionControl: false
     });
 
