@@ -82,7 +82,45 @@ export function addPollutionLayer(map) {
         data: geojson
       });
 
-      // Circle layer with color fade effect
+      // Layer 1: Outer fade (30km radius with very low opacity)
+      map.addLayer({
+        id: 'pollution-fade-3',
+        type: 'circle',
+        source: 'pollution',
+        paint: {
+          'circle-radius': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            10, 300,
+            18, 700
+          ],
+          'circle-color': ['get', 'color'],
+          'circle-opacity': 0.04,
+          'circle-blur': 1
+        }
+      });
+
+      // Layer 2: Mid fade (20km radius with low-medium opacity)
+      map.addLayer({
+        id: 'pollution-fade-2',
+        type: 'circle',
+        source: 'pollution',
+        paint: {
+          'circle-radius': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            10, 200,
+            18, 467
+          ],
+          'circle-color': ['get', 'color'],
+          'circle-opacity': 0.08,
+          'circle-blur': 1
+        }
+      });
+
+      // Layer 3: Center glow (1km radius with medium opacity)
       map.addLayer({
         id: 'pollution-circles',
         type: 'circle',
@@ -96,10 +134,8 @@ export function addPollutionLayer(map) {
             18, 20
           ],
           'circle-color': ['get', 'color'],
-          'circle-opacity': 0.6,
-          'circle-stroke-width': 2,
-          'circle-stroke-color': '#ffffff',
-          'circle-stroke-opacity': 0.8
+          'circle-opacity': 0.4,
+          'circle-blur': 0.5
         }
       });
 
