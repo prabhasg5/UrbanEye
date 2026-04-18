@@ -6,7 +6,7 @@ import './App.css';
 function App() {
   return (
     <>
-    <SocketTest/>
+    {/* <SocketTest/> */}
     <Router>
       <Routes>
         {/* 🔥 Map page */}
@@ -14,7 +14,7 @@ function App() {
         <Route path="/register" element={<Register />} />
 
         {/* 🔧 Optional debug page */}
-        {/* <Route path="/socket" element={<SocketTest />} /> */}
+        <Route path="/socket" element={<SocketTest />} />
 
         {/* 🏠 Default route */}
         <Route path="/" element={<div>Home Page</div>} />
